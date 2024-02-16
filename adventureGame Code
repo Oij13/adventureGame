@@ -48,13 +48,8 @@ def playNode(node, game):
 def main():
     games=getGame()
     currentNode = "start"
-    keepGoing= True
-    while (keepGoing):
-        if currentNode=="quit":
-            keepGoing= False
-            return currentNode
-        else:
-            currentNode = playNode(currentNode, games)
+    while currentNode!= "quit":
+        currentNode = playNode(currentNode, games)
             
 main()
 
