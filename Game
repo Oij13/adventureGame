@@ -1,0 +1,53 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Feb 16 10:05:14 2024
+
+@author: owen.johnson3
+"""
+def main():
+    game=getGame()
+    currentNode= "start"
+    while currentNode!= "quit":
+        currentNode = playNode(game, currentNode)
+def getGame():
+    gameData ={
+     "start": ["You wake up", "Get up", "awake", "Go back to sleep", "sleep"], 
+     "sleep": ["You need to be up to make it to school on time!", "Start Over", "start", "Quit", "quit"], 
+     "awake": ["You get up. Should you make breakfast?", "Make breakfast", "breakfast", "Don't make breakfast", "skip"], 
+     "skip": ["You need breakfast to have energy for the drive to school!", "Start Over", "start", "Quit", "quit"], 
+     "breakfast": ["You make breakfast to have energy for the day. Coffee?", "no :(", "noCoffee", "COFFEE", "coffee"], 
+     "noCoffee": ["But coffee is the best part about waking up!", "Start Over", "start", "Quit", "quit"], 
+     "coffee": ["Good choice. You get ready and head out the door. Will you take the country road shortcut on the way to school?", "Through Town", "town", "Country Roads", "country"], 
+     "town": ["You get stuck at every single light. Should've taken the back roads.", "Start Over", "start", "Quit", "quit"], 
+     "country": ["You take the country roads and there was nobody to slow you down. You arrive at school 10 minutes earlier. Where will you park?", "Parking Garage", "garage", "Visitors Lot", "lot"], 
+     "garage": ["You picked the wrong day for the parking garage. There was a patroller there and you got a ticket. Game over.", "Start Over", "start", "Quit", "quit"], 
+     "lot": ["You dropped your things off with no problem. You later go to the stadium to park you car. Walk or take the bus to class?", "Take the bus", "bus", "Walk", "walk"], 
+     "walk": ["It takes you 30 minutes to get to class. You are late.", "Start Over", "start", "Quit", "quit"], 
+     "bus": ["You make it to class with time to spare. Good job, you win!", "Start Over", "start", "Quit", "quit"], 
+        }
+    return gameData
+
+def playNode(node, game):
+    currentNode = game[node] 
+    (description, menuA, nodeA, menuB, nodeB) = currentNode
+    
+    print(f"""
+          {description}
+          1. {menuA}
+          2. {menuB}
+          
+          """)
+
+    response = input("What will you do? ")
+    if response == "1":
+        newNode = nodeA
+    elif response == "2":
+        newNode = nodeB
+    else:
+        print("Please pick 1 or 2")
+        newNode = node
+        
+    return newNode
+
+
+main()
